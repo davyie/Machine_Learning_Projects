@@ -28,6 +28,12 @@ class IrisDataset(Dataset):
         print(self.raw_data.info())
         print(self.raw_data['Species'].value_counts())
         pass
+
+    def get_data(self):
+        return self.raw_data.drop(columns=['Species'])
+    
+    def get_labels(self):
+        return self.raw_data['Species']
   
     def preprocessing(self):
         # Transform labels to numbers 
