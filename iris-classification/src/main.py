@@ -4,11 +4,14 @@ import torch
 from sklearn.model_selection import train_test_split
 from torch.utils.data import DataLoader
 from Dataset import IrisDataset
+import numpy as np
+from sklearn.metrics import accuracy_score
 
 def main():
     path = './Iris.csv'
     model = Model()
-    IrisDataset(path)
+    dataset = IrisDataset(path)
+    # dataset.analyse_data()
 
     def train(batch_size): # training loop 
         loss_fn = nn.CrossEntropyLoss()
@@ -16,7 +19,7 @@ def main():
 
         model.train()
         model.double()
-        dataloader = DataLoader(IrisDataset(path), batch_size=batch_size)
+        dataloader = DataLoader(dataset, batch_size=batch_size)
         size = len(dataloader.dataset)
 
         for batch, dict_data in enumerate(dataloader):
@@ -30,15 +33,23 @@ def main():
             optimizer.zero_grad()
 
             loss, current = loss.item(), (batch + 1) * len(X)
-            print(batch)
-            print(f"loss: {loss}  [{current}/{size}]")
+            # print(batch)
+            # print(f"loss: {loss}  [{current}/{size}]")
 
-    epochs = 10
+    epochs = 200
 
     for _ in range(epochs):
         train(32)
 
-        
+    with torch.no_grad():
+        X = dataset.get_data()
+        Y = dataset.get_labels()
+        model.eval()
+        predicts = model(torch.tensor(X.values))
+        Y_pred = np.argmax(predicts, axis=1)
+        print(Y_pred)
+        print(accuracy_score(Y, Y_pred))
+    
     pass
 
 if __name__ == '__main__':
