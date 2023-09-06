@@ -44,8 +44,8 @@ class Dataset():
         F = (SSM/DFM)/(SSE/DFE)
         SL = 0.95
         critical_value = f.ppf(SL, DFM, DFE)
-        print("Confidence Interval: [0, %d]" % critical_value)
-        print("F : %d" % F)
+        # print("Confidence Interval: [0, %d]" % critical_value)
+        # print("F : %d" % F)
         return True if 0 < F < critical_value else False
     
     def f_test_all(self):

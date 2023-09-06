@@ -1,7 +1,7 @@
-# Boston Housing Sales Prediction 
+# Boston Housing Sales Prediction 
 This project is about predicting housing sale median prices in 1000$. We have multiple features that we are going to explore and see if correlations exist in the data. 
 
-# Dataset 
+## Dataset 
 We are using Boston Housing Sales data. From the attribute information we can observe that the data has 14 features where the last one is the value we want to predict. All of the values are numerical and one of them is boolean. 
 This indicates we are going to perform regression. 
 
@@ -21,7 +21,8 @@ Here are the features:
 - LSTAT: % lower status of the population 
 - MEDV: Median value of owner-occupied homes in $1000's (Target)
 
-## Pearson Correlation Coefficient 
+## Pearson Correlation Coefficient 
+
 The first statistical analysis we are going to perform is Pearson Correlation Coefficient which tells us how the features relate to each other. 
 
 Why does it matter? To gain an understanding of correlation we can infer missing values from other variables because two variable might have a linear relationship. Correlation also helps us understand causal relationships between variables. We can also use this analysis to reduce the dimension and improve computation time and performance of our machine learning model. 
